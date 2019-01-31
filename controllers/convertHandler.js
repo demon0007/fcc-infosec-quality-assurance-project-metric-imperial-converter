@@ -30,16 +30,16 @@ function ConvertHandler() {
                          'km': 'Kilometers'}
   
   this.getNum = function(input) {
-    console.log('inside function')
-    console.log(input)
+    // console.log('inside function')
+    // console.log(input)
     var result;
     var patt = /[A-Za-z]/g;
     var firstChar = patt.exec(input);
-    console.log(firstChar)
+    // console.log(firstChar)
     if (input.indexOf(firstChar) == 0) result = parseFloat(1)
     else {
       result = input.substring(0, input.indexOf(firstChar))
-      console.log(result)
+      // console.log(result)
       let newPat = /[^./0-9]/g
       let match = newPat.exec(result)
       if (match !== null ) return 'Invalid Number'
@@ -52,6 +52,16 @@ function ConvertHandler() {
         let denom = parseInt(result.substring(frac))
         let fraction = (nume/denom).toFixed(5)
         result = parseFloat(integer + '.' + fraction.toString)
+      } else if (frac >= 0) {
+        if ( result.match(/[/]/g).length > 1) return 'Invalid Number'
+        let nume = parseInt(result.substring(0, frac))
+        let denom = parseInt(result.substring(frac))
+        let fraction = (nume/denom).toFixed(5)
+        result = parseFloat(fraction)
+      } else if (dec >= 0) {
+        if ( result.match(/[.]/g).length > 1) return 'Invalid Number'
+        let integer = result.substring(0, dec)
+        result = parseFloat(result)
       }
     }
     return parseFloat(result)
@@ -62,7 +72,8 @@ function ConvertHandler() {
     var patt = /[A-Za-z]/g;
     var firstChar = patt.exec(input);
     result = input.substring(input.indexOf(firstChar))
-    if (Object.keys(this.conversionChart).indexOf(result) == -1) return 'Invalid Unit'
+    // console.log(result)
+    if (Object.keys(this.conversionChart).indexOf(result.toLowerCase()) == -1) return 'Invalid Unit'
     return result;
   };
   
