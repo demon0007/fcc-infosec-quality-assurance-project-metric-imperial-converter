@@ -32,7 +32,7 @@ suite('Unit Tests', function(){
     
     test('Fractional Input', function(done) {
       var input = '3/2L';
-      console.log(convertHandler.getNum(input))
+      // console.log(convertHandler.getNum(input))
       // console.log(convertHandler.getUnit(input))
       assert.equal(convertHandler.getNum(input),1.5);
       done();
@@ -40,6 +40,7 @@ suite('Unit Tests', function(){
     
     test('Fractional Input w/ Decimal', function(done) {
       var input = '3.1/2L';
+      // console.log(convertHandler.getNum(input))
       assert.equal(convertHandler.getNum(input),3.5);
       done();
     });

@@ -49,20 +49,23 @@ function ConvertHandler() {
         if ( result.match(/[/]/g).length > 1 || result.match(/[.]/g).length > 1) return 'Invalid Number' 
         let integer = result.substring(0, dec)
         let nume = parseInt(result.substring(dec+1, frac))
-        let denom = parseInt(result.substring(frac))
+        let denom = parseInt(result.substring(frac+1))
         let fraction = (nume/denom).toFixed(5)
-        result = parseFloat(integer + '.' + fraction.toString)
+        // console.log(integer)
+        // console.log(fraction)
+        result = parseFloat(parseInt(integer) + parseFloat(fraction))
+        // console.log(result)
       } else if (frac >= 0) {
         if ( result.match(/[/]/g).length > 1) return 'Invalid Number'
         let nume = parseInt(result.substring(0, frac))
-        let denom = parseInt(result.substring(frac))
+        let denom = parseInt(result.substring(frac+1))
         let fraction = (nume/denom).toFixed(5)
         result = parseFloat(fraction)
       } else if (dec >= 0) {
         if ( result.match(/[.]/g).length > 1) return 'Invalid Number'
-        let integer = result.substring(0, dec)
+        // let integer = result.substring(0, dec)
         result = parseFloat(result)
-      }
+      } 
     }
     return parseFloat(result)
   };
