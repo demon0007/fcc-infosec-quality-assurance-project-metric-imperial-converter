@@ -77,11 +77,11 @@ function ConvertHandler() {
     result = input.substring(input.indexOf(firstChar))
     // console.log(result)
     if (Object.keys(this.conversionChart).indexOf(result.toLowerCase()) == -1) return 'Invalid Unit'
-    return result;
+    return result.toLowerCase();
   };
   
   this.getReturnUnit = function(initUnit) { 
-    return this.conversionTable[initUnit.toLowerCase()];
+    return this.conversionTable[initUnit.toLowerCase()].toLowerCase();
   };
 
   this.spellOutUnit = function(unit) {
