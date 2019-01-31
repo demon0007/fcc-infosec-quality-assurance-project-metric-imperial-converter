@@ -24,6 +24,7 @@ suite('Functional Tests', function() {
         .get('/api/convert')
         .query({input: '10L'})
         .end(function(err, res){
+           console.log(res.status, res.body.initNum, res.body.initUnit, res.bod)
           assert.equal(res.status, 200);
           assert.equal(res.body.initNum, 10);
           assert.equal(res.body.initUnit, 'L');
@@ -37,8 +38,10 @@ suite('Functional Tests', function() {
         chai.request(server)
         .get('/api/convert')
         .query({'input': '32g'})
-        assert.equal()
-        done();
+        .end((req, res)=> {
+          assert.equal(res.body.error, 'Invalid Unit')
+          done();
+        })
       });
       
       test('Convert 3/7.2/4kg (invalid number)', function(done) {
