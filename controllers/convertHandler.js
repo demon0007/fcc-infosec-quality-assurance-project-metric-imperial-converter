@@ -30,12 +30,16 @@ function ConvertHandler() {
                          'km': 'Kilometers'}
   
   this.getNum = function(input) {
+    console.log('inside function')
+    console.log(input)
     var result;
     var patt = /[A-Za-z]/g;
     var firstChar = patt.exec(input);
+    console.log(firstChar)
     if (input.indexOf(firstChar) == 0) result = parseFloat(1)
     else {
       result = input.substring(0, input.indexOf(firstChar))
+      console.log(result)
       let newPat = /[^./0-9]/g
       let match = newPat.exec(result)
       if (match !== null ) return 'Invalid Number'
@@ -50,7 +54,7 @@ function ConvertHandler() {
         result = parseFloat(integer + '.' + fraction.toString)
       }
     }
-    return result;
+    return parseFloat(result)
   };
   
   this.getUnit = function(input) {
@@ -79,7 +83,7 @@ function ConvertHandler() {
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    var result = initNum.toString() + this.spellOutUnit(initUnit) + ' converts to ' + returnNum.toString() + this.spellOutUnit(returnUnit);
+    var result = initNum.toString()+ ' ' + this.spellOutUnit(initUnit) + ' converts to ' + returnNum.toString()+ ' ' + this.spellOutUnit(returnUnit);
     return result;
   };
   

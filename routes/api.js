@@ -17,13 +17,14 @@ module.exports = function (app) {
 
   app.route('/api/convert')
     .get(function (req, res){
-    console.log('get  req')
+    // console.log('get  req')
       var input = req.query.input;
       var initNum = convertHandler.getNum(input);
-      console.log(typeof initNum)
+      // console.log(typeof initNum)
+      // console.log()
       if (typeof initNum === 'string') res.json({'error': initNum})
       var initUnit = convertHandler.getUnit(input);
-      if (typeof initUnit == 'string') res.json({'error': initUnit})
+      if (initUnit == 'Invalid Unit') res.json({'error': initUnit})
       var returnNum = convertHandler.convert(initNum, initUnit);
       var returnUnit = convertHandler.getReturnUnit(initUnit);
       var toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
