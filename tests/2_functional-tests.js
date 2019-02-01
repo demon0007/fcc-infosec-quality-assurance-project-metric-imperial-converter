@@ -45,19 +45,33 @@ suite('Functional Tests', function() {
       });
       
       test('Convert 3/7.2/4kg (invalid number)', function(done) {
-        
-        //done();
+        chai.request(server)
+        .get('/api/convert')
+        .query({'input': '3/7.2/4kg'})
+        .end((req, res)=> {
+          assert.equal(res.body.error, 'Invalid Number')
+          done();
+        })
       });  
       
       test('Convert 3/7.2/4kilomegagram (invalid number and unit)', function(done) {
-        
-        //done();
+        chai.request(server)
+        .get('/api/convert')
+        .query({'input': '3/7.2/4kilomegagram'})
+        .end((req, res)=> {
+          assert.equal(res.body.error, 'Invalid Number')
+          done();
+        })
       });
       
       test('Convert kg (no number)', function(done) {
-        
-        
-        //done();
+        chai.request(server)
+        .get('/api/convert')
+        .query({'input': 'kg'})
+        .end((req, res)=> {
+          assert.equal(res.body.initNum, 1)
+          done();
+        })
       });
       
     });
